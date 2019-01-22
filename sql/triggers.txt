@@ -1,0 +1,16 @@
+
+
+
+insert into multimedia.curso (nombre_curso,fecha_inicio, tipo_curso_id,usuario_id,total_cupos) values ('Curso Laravel','2019-01-16',1,2,50);
+create or replace function insercion_cupos_restantes() returns trigger as $$
+begin
+
+	new.cupos_restantes := new.total_cupos;
+
+	return new;
+	
+end;
+$$ 
+language 'plpgsql';
+
+create trigger insercion_cupos_restantes before insert on multimedia.curso for each row execute procedure multimedia.insercion_cupos_restantes();

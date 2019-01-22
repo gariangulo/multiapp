@@ -1,0 +1,36 @@
+{% extends 'base_jinja.html' %}
+
+{% block content %}
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{ titulo}}</h3>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table class="table table-bordered">
+            <tr>
+                <th style="width: 10px">ID</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Comentario</th>
+                <th>Curso</th>
+            </tr>
+            
+            {% for comentario in comentarios %}
+            
+            <tr>
+                
+                <td>{{ comentario.id }}</td>
+                <td>{{ comentario.fecha_comentario.strftime('%d/%m/%Y') }}</td>
+                <td>{{ comentario.usuario.username }}</td>
+                <td>{{ comentario.comentario }}</td>
+                <td>{{ comentario.curso.nombre_curso }}</td>
+            </tr>
+
+             {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
